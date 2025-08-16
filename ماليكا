@@ -1,0 +1,19 @@
+import fluidsynth
+
+# حمّل SoundFont
+sf2_path = "Chorium.sf2"       # اسم ملف الساوند فونت
+midi_path = "Malika_Karaoke.mid"
+output_path = "Malika_Karaoke.mp3"
+
+# إعداد FluidSynth
+fs = fluidsynth.Synth()
+fs.start(driver="file", filename=output_path)
+
+sfid = fs.sfload(sf2_path)
+fs.program_select(0, sfid, 0, 0)
+
+# شغّل الـ MIDI
+fs.play_midi(midi_path)
+
+fs.delete()
+print("تم التحويل: ", output_path)
